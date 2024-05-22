@@ -13,7 +13,6 @@
 - [Custom Shaders](#custom-shaders)
 - [React Three Fiber](#react-three-fiber)
 - [Transmission](#transmission)
-- [VR](#vr)
 
 ## Getting Started
 [![hello-world-demo](./assets/images/hello-world-preview.jpg)](#getting-started)
@@ -339,27 +338,4 @@ let glassSphere = new Mesh(
 );
 
 scene.add(glassSphere);
-```
-
-## VR
-[![vr-demo](./assets/images/vr-preview.jpg)](#vr)
-
-Viewing your splats in VR is as simple as enabling XR in three.js and adding a VR button. View this demo with a VR headset (or through a headset browser) and click "Enter VR"! It will work best on PC VR, standalone VR tends to struggle with splats presently
-
-**[DemoVR.ts](./src/DemoVR.ts)**
-```typescript
-import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
-
-renderer.xr.enabled = true;
-
-let vrButton = VRButton.createButton(renderer);
-
-document.body.appendChild(vrButton);
-
-let splats = new LumaSplatsThree({
-	// Kind Humanoid @RyanHickman
-	source: 'https://lumalabs.ai/capture/83e9aae8-7023-448e-83a6-53ccb377ec86',
-});
-
-scene.add(splats);
 ```

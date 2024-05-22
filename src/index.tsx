@@ -16,7 +16,6 @@ import { DemoHelloWorld } from './DemoHelloWorld';
 import { DemoLighting } from './DemoLighting';
 import { DemoReactThreeFiber } from './DemoReactThreeFiber';
 import { DemoTransmission } from './DemoTransmission';
-import { DemoVR } from './DemoVR';
 
 export type DemoProps = {
 	renderer: WebGLRenderer,
@@ -38,7 +37,6 @@ const demos = {
 		"scene-lighting": DemoLighting,
 		"custom-shaders": DemoCustomShaders,
 		"transmission": DemoTransmission,
-		"vr": DemoVR,
 	} as Record<string, DemoFn>,
 	react: {
 		"react-three-fiber": DemoReactThreeFiber
