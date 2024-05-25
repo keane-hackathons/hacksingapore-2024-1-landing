@@ -16,6 +16,13 @@ import { DemoHelloWorld } from './DemoHelloWorld';
 import { DemoLighting } from './DemoLighting';
 import { DemoReactThreeFiber } from './DemoReactThreeFiber';
 import { DemoTransmission } from './DemoTransmission';
+import { IonPage, IonButton, IonInput, IonItem, IonList, IonIcon, IonSearchbar, IonLabel, IonModal, setupIonicReact } from '@ionic/react';
+import IonDrawer from './IonDrawer';
+import IonFlyingModal from './IonFlyingModal';
+import { enterOutline, paperPlane } from 'ionicons/icons';
+import { CupertinoPane } from 'cupertino-pane';
+
+setupIonicReact();
 
 export type DemoProps = {
 	renderer: WebGLRenderer,
@@ -172,6 +179,8 @@ function DemoScene(props: {
 }
 
 function App() {
+	const modalRef = useRef<CupertinoPane>();
+	const inputRef = useRef<HTMLIonInputElement>(null);
 	const demoKeys = Object.keys(demos.basic).concat(Object.keys(demos.react));
 
 	const [demoKey, setDemoKey] = useState<string | null>(() => {
@@ -228,74 +237,14 @@ function App() {
 	}, []);
 
 	return <>
-		{showDocs && <div className='demo-menu'>
-			<Markdown
-				components={{
-					h2(props) {
-						const { node, children, ...rest } = props;
-						let id = (node as any).children[0].value.toLowerCase().replace(/\s/g, '-');
-						const isActive = id === demoKey;
-						function activateDemo(e: React.MouseEvent<HTMLHeadingElement, MouseEvent>) {
-							document.getElementById(id)?.querySelector('a')?.click();
-							// setDemoKey(id);
-							// document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-						}
-						// make clickable
-						return <h2
-							{...rest}
-							id={id}
-							onClick={activateDemo}
-							className={isActive ? 'active' : ''}
-						>
-							<a href={`#${id}`}>{children}</a>
-							{!isActive && <button >View Demo</button>}
-						</h2>;
-					},
-					code(props) {
-						const { children, className, node, ref, ...rest } = props
-						const match = /language-(\w+)/.exec(className || '')
-						return match ? (
-							<SyntaxHighlighter
-								{...rest}
-								children={String(children).replace(/\n$/, '')}
-								language={match[1]}
-								style={syntaxTheme}
-							/>
-						) : (
-							<code {...rest} className={className}>
-								{children}
-							</code>
-						)
-					},
-					a(props) {
-						let { href, ...rest } = props;
-						
-						// replace ./src links with github links for better readability
-						if (href?.startsWith('./src')) {
-							href = 'https://github.com/lumalabs/luma-web-examples/blob/main/' + href.slice(1);
-						}
-
-						let isAbsolute = /^https?:\/\//.test(href ?? '');
-						if (isAbsolute) {
-							// open in new tab
-							return <a {...rest} href={href} target='_blank' rel='noopener noreferrer' />
-						} else {
-							return <a {...rest} href={href} />
-						}
-					}
-				}}
-			>{readme}</Markdown>
-		</div>}
 
 		{hasDemo && <Canvas
+			className='demo-canvas'
 			gl={{
 				antialias: false,
 				toneMapping: CineonToneMapping,
 			}}
 			key={demoKey}
-			style={{
-				minWidth: '10px',
-			}}
 			onPointerDown={(e) => {
 				// prevent text selection
 				e.preventDefault();
@@ -312,6 +261,27 @@ function App() {
 				demoReactFn={demoReactFn}
 			/>
 		</Canvas>}
+
+		<div className='test'>
+			<div className='top-bar'>
+				<IonSearchbar 
+					placeholder="Where to?" 
+					class="custom" 
+					onIonFocus={() => {
+						modalRef.current?.present({animate: true})
+					}}
+				/>
+			</div>
+			<IonFlyingModal innerRef={modalRef} inputRef={inputRef} panelKey="modal">
+				<IonList lines='none'>
+					<IonItem>
+						<IonInput ref={inputRef} label="Take me to" placeholder="the heart of Singapore" clearInput={true}>
+							<IonButton slot="end" aria-label="Go" >GO</IonButton>
+						</IonInput>
+					</IonItem>
+				</IonList>
+			</IonFlyingModal>
+		</div>
 	</>
 }
 

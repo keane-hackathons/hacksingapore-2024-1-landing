@@ -25,10 +25,74 @@
 		#react-root {
 			width: 100%;
 			height: 100%;
+			position: relative;
+		}
 
-			display: flex;
-			flex-direction: row;
-			gap: 2px;
+		.top-bar {
+			width: 30%;
+    		margin: 0 auto;
+		}
+
+		.top-bar:hover {
+			cursor: pointer;
+		}
+
+		.top-bar * {
+			cursor: pointer;
+		}
+
+		.top-bar ion-searchbar.ios.custom,
+		.top-bar ion-searchbar.md.custom {
+			--border-radius: unset;
+			--box-shadow: none;
+			border: 0.1rem solid transparent;
+			border-radius: 50px;
+			transition: border-color 0.3s ease-in-out;
+			background: rgba(255, 255, 255, 0.3);
+		}
+
+		.top-bar ion-searchbar.ios.custom input,
+		.top-bar ion-searchbar.md.custom input {
+			background: transparent;
+		}
+
+		.top-bar:hover ion-searchbar.ios.custom,
+		.top-bar:hover ion-searchbar.md.custom {
+			border-color: black;
+		}
+
+		.modal {
+			padding: 80px 20px 100px;
+		}
+
+		.modal ion-input {
+			/* margin: 0 3rem; */
+			--highlight-color-focused: none;
+
+		}
+
+		.test {
+			border-radius: 10px;
+			width: 100%;
+			padding: 25px;
+			font-size: 1.1em;
+			/* smooth scroll */
+			scroll-behavior: smooth;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+
+		.demo-canvas {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			pointer-events: auto;
+			min-width: 10px;
+			touch-action: none;
+			position: absolute;
+			top: 0;
+			right: 0;
 		}
 
 
@@ -37,9 +101,9 @@
 
 			border-radius: 10px;
 
-			padding: 60px;
-			width: 100%;
-
+			padding: 25px;
+			width: auto;
+			height: 100%;
 			font-size: 1.1em;
 
 			/* subtle shadow */
@@ -118,19 +182,6 @@
 
 		a:hover {
 			color: #089eef;
-		}
-
-		/* For small screen widths change flex-direction to column */
-		@media (max-width: 768px) {
-			#react-root {
-				flex-direction: column;
-			}
-
-			.demo-menu {
-				width: auto;
-				height: 100%;
-				padding: 25px;
-			}
 		}
 
 		.expand-button {
