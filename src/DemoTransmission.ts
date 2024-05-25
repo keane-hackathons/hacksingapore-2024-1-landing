@@ -1,6 +1,6 @@
 import { LumaSplatsThree } from "@lumaai/luma-web";
 import { NoToneMapping, LinearToneMapping, CineonToneMapping, ReinhardToneMapping, ACESFilmicToneMapping, WebGLRenderer, WebGLRenderTarget, CubeTexture, FrontSide, MathUtils, Mesh, MeshPhysicalMaterial, PerspectiveCamera, SphereGeometry, Vector3 } from "three";
-import { DemoProps } from ".";
+import { DemoProps } from "./DemoScene";
 import { addMaterial } from "./util/GUIUtils";
 
 const worldSources = [
