@@ -3,11 +3,6 @@ import { Canvas } from '@react-three/fiber';
 import GUI from 'lil-gui';
 import React, { useEffect, useRef, useState } from 'react';
 import { CineonToneMapping } from 'three';
-import { DemoBackgroundRemoval } from './DemoBackgroundRemoval';
-import { DemoCustomShaders } from './DemoCustomShaders';
-import { DemoFog } from './DemoFog';
-import { DemoHelloWorld } from './DemoHelloWorld';
-import { DemoLighting } from './DemoLighting';
 import { DemoReactThreeFiber } from './DemoReactThreeFiber';
 import { DemoTransmission } from './DemoTransmission';
 import { IonButton, IonInput, IonItem, IonList, IonSearchbar } from '@ionic/react';
@@ -17,11 +12,6 @@ import DemoScene, { DemoFn } from './DemoScene';
 
 const demos = {
 	basic: {
-		"getting-started": DemoHelloWorld,
-		"three-fog": DemoFog,
-		"background-removal": DemoBackgroundRemoval,
-		"scene-lighting": DemoLighting,
-		"custom-shaders": DemoCustomShaders,
 		"transmission": DemoTransmission,
 	} as Record<string, DemoFn>,
 	react: {
